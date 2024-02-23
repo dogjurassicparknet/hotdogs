@@ -66,3 +66,10 @@ resource "google_container_node_pool" "main_pool" {
     }
   }
 }
+
+resource "google_artifact_registry_repository" "repo" {
+  location      = var.region
+  repository_id = "charlie-cohere-test"
+  description   = "Container registry for Cohere take-home"
+  format        = "DOCKER"
+}
