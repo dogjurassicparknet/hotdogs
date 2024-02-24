@@ -1,0 +1,5 @@
+- helm or kustomize instead of hardcoding everything
+- tilt or docker compose for local development
+- GitHub actions for building and pushing to registry
+- kbld?
+- IAM and service accounts for the cluster
