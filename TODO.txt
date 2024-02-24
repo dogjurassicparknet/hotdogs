@@ -4,3 +4,4 @@
 - IAM and service accounts for the cluster
 - Connection pooling for postgres to prevent connection resets when paginating too fast
 - tilt for full k8s local development
+- solution for keeping secrets consistent within a local repo

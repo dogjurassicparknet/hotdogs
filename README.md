@@ -52,6 +52,7 @@ cd ../postgres
 docker-compose up -d --build
 
 cd ../frontend
+# Create a .env.local from .env.local.sample
 npm install
 npm run dev
 # app is running at localhost:3000
