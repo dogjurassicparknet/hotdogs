@@ -1,0 +1,19 @@
+# Docker compose for local development with the containerized database
+version: "3.8"
+services:
+  db:
+    image: cohere-local-postgres
+    build:
+      context: .
+    shm_size: "128mb"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    env_file:
+      - ../k8s/.env.secret.local
+    environment:
+      POSTGRES_PASSWORD: 'postgres'
+
+volumes:
+  pgdata:
