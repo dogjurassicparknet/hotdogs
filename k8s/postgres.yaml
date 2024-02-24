@@ -1,0 +1,75 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: standard-rwo
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  labels:
+    app: postgres
+spec:
+  serviceName: "postgres"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: northamerica-northeast2-docker.pkg.dev/ferrous-iridium-415220/charlie-cohere-test/database:latest
+        ports:
+        - containerPort: 5432
+          name: postgres
+        env:
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: database-credentials
+                key: POSTGRES_PASSWORD
+          - name: ADMIN_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: database-credentials
+                key: ADMIN_PASSWORD
+          - name: ADMIN_USER
+            valueFrom:
+              secretKeyRef:
+                name: database-credentials
+                key: ADMIN_USER
+          - name: PGDATA
+            value: var/lib/postgresql/data/pgdata
+        volumeMounts:
+        - name: pv-data
+          mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: pv-data
+          persistentVolumeClaim:
+            claimName: postgres-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+  labels:
+    app: postgres
+spec:
+  ports:
+  - port: 5432
+    name: postgres
+  type: NodePort
+  selector:
+    app: postgres

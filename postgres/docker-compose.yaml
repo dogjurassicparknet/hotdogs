@@ -12,8 +12,6 @@ services:
       - "5432:5432"
     env_file:
       - ../k8s/.env.secret.local
-    environment:
-      POSTGRES_PASSWORD: 'postgres'
 
 volumes:
   pgdata:

@@ -1,6 +1,7 @@
 resources:
   - frontend-deployment.yaml
   - frontend-service.yaml
+  - postgres.yaml
   - ingress.yaml
 
 secretGenerator:
