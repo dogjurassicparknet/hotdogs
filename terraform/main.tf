@@ -56,6 +56,10 @@ resource "google_container_node_pool" "main_pool" {
     oauth_scopes = [
       "https://www.googleapis.com/auth/logging.write",
       "https://www.googleapis.com/auth/monitoring",
+      # TODO: use service account with IAM roles
+      # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_cluster#oauth_scopes
+      # this is needed to be able to pull from the artifact registry
+      "https://www.googleapis.com/auth/cloud-platform",
     ]
 
 
