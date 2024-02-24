@@ -1,0 +1,18 @@
+.author {
+  min-width: 15ch;
+}
+
+.quotes {
+  border-spacing: 0.5em;
+}
+
+.tableControls {
+  display: flex;
+  gap: 1ch;
+  justify-content: flex-end;
+}
+
+.tableContainer {
+  width: 50%;
+  max-width: 50rem;
+}

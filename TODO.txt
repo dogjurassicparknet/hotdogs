@@ -3,3 +3,6 @@
 - GitHub actions for building and pushing to registry
 - kbld?
 - IAM and service accounts for the cluster
+- Real migrations
+- possibly an ORM
+- Connection pooling for postgres
