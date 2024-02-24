@@ -5,4 +5,4 @@
 - IAM and service accounts for the cluster
 - Real migrations
 - possibly an ORM
-- Connection pooling for postgres
+- Connection pooling for postgres to prevent connection resets when paginating too fast
