@@ -35,7 +35,7 @@ terraform apply
 # See TODO.txt about kbld
 
 cd ../k8s
-# Create a .env.secrets file from .env.secret.local
+# Create a .env.secrets file from .env.secret.sample
 kubectl apply -k .
 
 # Wait a bit and get ingress's external IP
