@@ -41,3 +41,18 @@ kubectl apply -k .
 # Wait a bit and get ingress's external IP
 kubectl get ingress ingress -o=jsonpath="{.status.loadBalancer.ingress[0].ip}"
 ```
+
+# Develop
+
+```sh
+cd k8s
+# Create a .env.secrets.local from .env.secret.sample
+
+cd ../postgres
+docker-compose up -d --build
+
+cd ../frontend
+npm install
+npm run dev
+# app is running at localhost:3000
+```
